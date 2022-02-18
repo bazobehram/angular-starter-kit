@@ -1,0 +1,26 @@
+<form [formGroup]="myForm" #formDir="ngForm" (submit)="submit()">
+  <textarea
+    type="textarea"
+    id="description"
+    class="form-control"
+    formControlName="description"
+  ></textarea>
+  <div
+    *ngIf="description?.invalid && (description?.dirty || description?.touched)"
+  >
+    <div *ngIf="description?.errors?.['minlength']">
+      description must be at least 4 characters long.
+    </div>
+    <div *ngIf="description?.errors?.['maxlength']">
+      description must be at least 100 characters long.
+    </div>
+    <div *ngIf="description?.errors?.['required']">
+      description is required.
+    </div>
+  </div>
+  <ng-container *ngIf="myFormData">
+    {{myFormData | json}}
+  </ng-container>
+  <button [disabled]="!myForm.valid" type="submit">submit</button>
+  <button (click)="clear()" [disabled]="!myForm.valid" type="button">Clear</button>
+</form>
