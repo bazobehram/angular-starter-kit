@@ -1,0 +1,16 @@
+<form [formGroup]="myForm" #formDir="ngForm" (submit)="submit()">
+    <textarea type="textarea" id="name" class="form-control"
+    formControlName="name"></textarea>
+    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+    <div *ngIf="name?.errors?.['minlength']">
+        Name must be at least 4 characters long.
+      </div>
+      <div *ngIf="name?.errors?.['maxlength']">
+        Name must be at least 100 characters long.
+      </div>
+      <div *ngIf="name?.errors?.['required']">
+        Name is required.
+      </div>
+      </div>
+    <button [disabled]="!myForm.valid" type="submit">submit</button>
+</form>
